@@ -8,3 +8,5 @@ node_modules/
 
 # Docker
 *.log
+pdv.db
+test_pdv.db

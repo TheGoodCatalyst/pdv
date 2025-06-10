@@ -6,5 +6,7 @@ services:
       - "8000:8000"
     volumes:
       - ./src:/app/src
+      - ./pdv.db:/app/pdv.db      # persist SQLite database
     environment:
       - ENV=development
+      - DATABASE_URL=sqlite:///./pdv.db
