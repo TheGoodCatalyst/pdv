@@ -7,6 +7,7 @@ A secure, user-centric vault for agent frameworks to store and manage personal c
 - **Milestone M1:** Repository initialized with LICENSE, README, and .gitignore.
 - **Milestone M2:** Service skeleton with FastAPI, Docker, tests, and CI pipeline.
 - **Milestone M3:** Storage layer with SQLAlchemy models, migrations, and SQLite support.
+- **Milestone M4:** KMS abstraction with local stub and Vault/AWS providers.
 
 ## Repository Structure
 ```
