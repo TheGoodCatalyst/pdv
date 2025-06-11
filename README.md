@@ -54,5 +54,9 @@ pdv-vault/
 docker-compose up --build
 ```
 
+### MCP Server
+
+This repo now includes a small [Model Context Protocol](https://modelcontextprotocol.io/) server exposing PDV functionality as MCP tools. The server lives in `src/mcp_server.py` and is mounted under `/mcp` when running the FastAPI app. Any MCP compatible client (e.g. Claude Desktop) can connect to this endpoint to invoke the credential tools.
+
 ## Contribution
 See CONTRIBUTING.md for guidelines.
