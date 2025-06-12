@@ -24,7 +24,8 @@ def test_encrypt_roundtrip(kms):
     assert decrypted == plaintext
 
 
-def test_signer_not_implemented(kms):
+def test_get_signer_returns_callable(kms):
     kms.generate_key("sig")
-    with pytest.raises(NotImplementedError):
-        kms.get_signer("sig")
+    signer = kms.get_signer("sig")
+    signature = signer(b"message")
+    assert isinstance(signature, bytes)

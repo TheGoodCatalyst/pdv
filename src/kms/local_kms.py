@@ -1,5 +1,7 @@
 import os
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.primitives.hmac import HMAC
+from cryptography.hazmat.primitives import hashes
 
 from src.kms.base import KMSInterface
 
@@ -15,7 +17,14 @@ class LocalKMS(KMSInterface):
         self._keys[key_id] = key
 
     def get_signer(self, key_id: str):
-        raise NotImplementedError("LocalKMS does not support signing")
+        key = self._keys[key_id]
+
+        def signer(message: bytes) -> bytes:
+            h = HMAC(key, hashes.SHA256())
+            h.update(message)
+            return h.finalize()
+
+        return signer
 
     def encrypt(self, key_id: str, plaintext: bytes) -> bytes:
         key = self._keys[key_id]
