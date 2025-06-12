@@ -29,3 +29,18 @@ class Credential(Base):
     status = Column(Enum(CredentialStatus), default=CredentialStatus.active)
     metadata_ = Column("metadata", JSON)
     blob = Column(BLOB, nullable=False)  # encrypted credential payload
+
+
+class ConsentDecision(enum.Enum):
+    granted = "granted"
+    denied = "denied"
+
+
+class Consent(Base):
+    __tablename__ = "consents"
+    id = Column(String, primary_key=True)
+    user_id = Column(String, index=True)
+    service = Column(String, index=True)
+    scope = Column(String)
+    decision = Column(Enum(ConsentDecision))
+    timestamp = Column(DateTime, default=datetime.utcnow)

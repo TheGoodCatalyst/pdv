@@ -4,13 +4,11 @@ from sqlalchemy.orm import Session
 
 from src.storage.database import get_db
 from src.storage.models import Credential, CredentialStatus
-from src.kms.local_kms import LocalKMS
+from src.kms.registry import kms
 
 router = APIRouter()
 
-# simple in-memory KMS instance for demo purposes
-kms = LocalKMS()
-kms.generate_key("default")
+# KMS instance is shared across the service
 
 
 class CredentialIn(BaseModel):
